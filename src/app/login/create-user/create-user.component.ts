@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoginDataService } from '../service/login-data.service';
 import { MessageSvcService } from 'src/app/common-svc/message-svc.service';
 import { LoginModelService } from '../service/login-model.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-user',
@@ -15,7 +16,8 @@ export class CreateUserComponent {
     private modelSvc: LoginModelService,
     private dataSvc: LoginDataService,
     private fb: FormBuilder,
-    private msg: MessageSvcService
+    private msg: MessageSvcService,
+    private router: Router,
   ) {}
   ngOnInit(): void {
     localStorage.setItem('loggedIn', 'false');
@@ -47,7 +49,7 @@ export class CreateUserComponent {
         this.dataSvc.save(userData).subscribe((res) => {
           if (res.id) {
             this.msg.successMsg('User is created Successfully', 'Success!');
-            this.userForm.markAsDirty();
+            this.router.navigate(['/login']);
           } else {
             this.msg.warningMsg('Failed.', 'Warning!');
           }
