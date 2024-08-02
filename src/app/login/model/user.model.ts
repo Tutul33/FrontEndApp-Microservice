@@ -2,6 +2,7 @@ export class User {
     fullName: string = "";
     email:string="";
     userName:string="";
+    password:string="";
     age: string = "";
     birthDate: Date | undefined;
     birthTime: string = "";
