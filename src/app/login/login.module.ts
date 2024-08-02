@@ -3,18 +3,23 @@ import { CommonModule } from '@angular/common';
 import { LoginComponent } from './login/login.component';
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 import { LoginRoutingModule } from './login-routing.module';
-import { FormsModule } from '@angular/forms';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CreateUserComponent } from './create-user/create-user.component';
+import { PreventDoubleClickDirective } from '../shared/directive/prevent-double-click.directive';
 
 @NgModule({
   declarations: [
     LoginComponent,
-    ForgotpasswordComponent
+    ForgotpasswordComponent,
+    CreateUserComponent,
+    PreventDoubleClickDirective
   ],
   imports: [
     CommonModule,
     FormsModule,
-    LoginRoutingModule
+    ReactiveFormsModule,
+    LoginRoutingModule,
+    
   ]
 })
 export class LoginModule { }

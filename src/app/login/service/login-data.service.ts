@@ -5,7 +5,7 @@ import { CommonDataService } from 'src/app/common-svc/common-data.service';
   providedIn: 'root'
 })
 export class LoginDataService {
-  baseUrl:string="http://localhost:13952";
+  baseUrl:string="http://localhost:4501";
   constructor(private dataSvc:CommonDataService) { }
 
   login(postModel:any){

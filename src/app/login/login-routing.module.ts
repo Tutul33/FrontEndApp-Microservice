@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
+import { CreateUserComponent } from './create-user/create-user.component';
 
 const routes:Routes=[
   {
@@ -16,6 +16,11 @@ const routes:Routes=[
   {
     path:'forgotpassword',
     component:ForgotpasswordComponent
+  }
+  ,
+  {
+    path:'register',
+    component:CreateUserComponent
   }
 ];
 
