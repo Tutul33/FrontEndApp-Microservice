@@ -31,11 +31,12 @@ export class LoginComponent implements OnInit {
 
   login() {    
     this.dataSvc.login(this.user).subscribe((res) => {
-      console.log(res);
-      this.authService.login();
+      if(res.id){
+        this.authService.login();
 
       // Navigate to dashboard if login is successful
       this.router.navigate(['/dashboard']);
+      }
     });
   }
 }
