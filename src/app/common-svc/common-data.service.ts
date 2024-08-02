@@ -53,9 +53,19 @@ export class CommonDataService {
     );
   }
 
-  getList(baseUrl: string, controller: string, param: any){
-    let qString = this.JsonStringify(param);
-    let apiUrl = `${baseUrl}/${controller}?param=${qString}`;
+  getList(baseUrl: string, controller: string, param?: any){
+    
+    let apiUrl = '';
+    if(param)
+    {
+      let qString = this.JsonStringify(param);
+      apiUrl=`${baseUrl}/${controller}?param=${qString}`;
+    }
+    else
+      {
+        apiUrl=`${baseUrl}/${controller}`;
+      }
+
     return this.http.get<any>(apiUrl).pipe(
       catchError((error) => {
         console.error('Error occurred:', error);

@@ -30,6 +30,12 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     localStorage.setItem('loggedIn', 'false');
     this.createForm();
+    this.loadItem();
+  }
+  loadItem(){
+    this.dataSvc.getItem().subscribe((res) => {
+      console.log(res);
+    });
   }
   createForm(){
    try {
