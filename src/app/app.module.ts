@@ -9,12 +9,14 @@ import { FooterComponent } from './common/footer/footer.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { MenuItemComponent } from './common/menu-item/menu-item.component';
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     SidebarComponent,
     FooterComponent,
+    MenuItemComponent,
     
   ],
   imports: [

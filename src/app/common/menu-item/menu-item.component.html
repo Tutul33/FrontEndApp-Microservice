@@ -1,0 +1,12 @@
+  <li class="nav-item">
+    <a *ngIf="menuItem.subMenu && menuItem.subMenu.length > 0" class="nav-link collapsed" data-bs-toggle="collapse" [attr.data-bs-target]="'#menu-' + menuItem.id" href="#">
+      <i class="bi bi-menu-button-wide"></i><span>{{menuItem.menuName}}</span><i class="bi bi-chevron-down ms-auto"></i>
+    </a>
+    <a *ngIf="!menuItem.subMenu || menuItem.subMenu.length === 0" [routerLink]="menuItem.url" class="nav-link">
+      <i class="bi bi-grid"></i><span>{{menuItem.menuName}}</span>
+    </a>
+    <ul *ngIf="menuItem.subMenu && menuItem.subMenu.length > 0" [id]="'menu-' + menuItem.id" class="nav-content collapse" [attr.data-bs-parent]="'#sidebar-nav'">
+      <app-menu-item *ngFor="let subItem of menuItem.subMenu" [menuItem]="subItem"></app-menu-item>
+    </ul>
+  </li>
+  

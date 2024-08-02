@@ -1,0 +1,6 @@
+.nav-item a i {
+    font-size: 16px !important;
+    margin-right: 10px !important;
+    line-height: 0;
+    border-radius: 50%;
+}
