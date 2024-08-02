@@ -13,47 +13,56 @@
             </div><!-- End Logo -->
 
             <div class="card mb-3">
-
               <div class="card-body">
-
                 <div class="pt-4 pb-2">
                   <h5 class="card-title text-center pb-0 fs-4">Create an Account</h5>
                   <p class="text-center small">Enter your personal details to create account</p>
                 </div>
-
-                <form class="row g-3 needs-validation" novalidate>
+                <form [formGroup]="userForm" class="row g-3 needs-validation" (ngSubmit)="save()">
                   <div class="col-12">
-                    <label for="yourName" class="form-label">Your Name</label>
-                    <input type="text" name="name" class="form-control" id="yourName" required>
-                    <div class="invalid-feedback">Please, enter your name!</div>
+                    <label for="fullName" class="form-label">Your Name</label>
+                    <input type="text" name="name" class="form-control" id="fullName"  formControlName="fullName" required>
+                    <div *ngIf="userForm.get('fullName')?.invalid && userForm.get('fullName')?.touched" class="invalid-feedback">Please enter your fullname!</div>
                   </div>
-
                   <div class="col-12">
-                    <label for="yourEmail" class="form-label">Your Email</label>
-                    <input type="email" name="email" class="form-control" id="yourEmail" required>
-                    <div class="invalid-feedback">Please enter a valid Email adddress!</div>
+                    <label for="email" class="form-label">Your Email</label>
+                    <input type="email" name="email" class="form-control" id="email" formControlName="email" required>
+                    <div *ngIf="userForm.get('email')?.invalid && userForm.get('email')?.touched" class="invalid-feedback">Please enter a valid Email adddress!</div>
                   </div>
-
                   <div class="col-12">
-                    <label for="yourUsername" class="form-label">Username</label>
+                    <label for="age" class="form-label">Age</label>
+                    <input type="age" name="age" class="form-control" id="age" formControlName="age" >
+                  </div>
+                  <div class="col-12">
+                    <label for="userName" class="form-label">Username</label>
                     <div class="input-group has-validation">
                       <span class="input-group-text" id="inputGroupPrepend">@</span>
-                      <input type="text" name="username" class="form-control" id="yourUsername" required>
-                      <div class="invalid-feedback">Please choose a username.</div>
+                      <input type="text" name="userName" class="form-control" id="userName" formControlName="userName" required>
+                      <div *ngIf="userForm.get('userName')?.invalid && userForm.get('userName')?.touched" class="invalid-feedback">Please choose a username!</div>
                     </div>
                   </div>
-
+                  <div class="col-12">
+                    <label for="birthDate" class="form-label">BirthDay</label>
+                    <div class="input-group has-validation">
+                      <input type="date" name="birthDate" class="form-control" id="birthDate" formControlName="birthDate">
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <label for="birthTime" class="form-label">BirthTime</label>
+                    <div class="input-group has-validation">
+                      <input type="time" name="birthTime" class="form-control" id="birthTime" formControlName="birthTime">
+                    </div>
+                  </div>
                   <div class="col-12">
                     <label for="yourPassword" class="form-label">Password</label>
-                    <input type="password" name="password" class="form-control" id="yourPassword" required>
-                    <div class="invalid-feedback">Please enter your password!</div>
+                    <input type="password" name="password" class="form-control" id="yourPassword" formControlName="password" required>
+                    <div *ngIf="userForm.get('password')?.invalid && userForm.get('password')?.touched" class="invalid-feedback">Please enter your password!</div>
                   </div>
-
                   <div class="col-12">
                     <div class="form-check">
-                      <input class="form-check-input" name="terms" type="checkbox" value="" id="acceptTerms" required>
+                      <input class="form-check-input" name="terms" type="checkbox" value="" id="acceptTerms" formControlName="termsAndConditions" required>
                       <label class="form-check-label" for="acceptTerms">I agree and accept the <a href="#">terms and conditions</a></label>
-                      <div class="invalid-feedback">You must agree before submitting.</div>
+                      <div *ngIf="userForm.get('username')?.invalid && userForm.get('username')?.touched" class="invalid-feedback">You must agree before submitting.</div>
                     </div>
                   </div>
                   <div class="col-12">

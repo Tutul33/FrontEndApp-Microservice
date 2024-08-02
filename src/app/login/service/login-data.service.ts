@@ -11,4 +11,7 @@ export class LoginDataService {
   login(postModel:any){
     return this.dataSvc.post(this.baseUrl,"api/login/UserLogin",postModel);
   }
+  save(postModel:any){
+    return this.dataSvc.post(this.baseUrl,"api/login/Register",postModel);
+  }
 }
