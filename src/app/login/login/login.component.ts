@@ -10,62 +10,55 @@ import { MessageSvcService } from 'src/app/common-svc/message-svc.service';
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  providers:[
-    AuthService,
-    LoginDataService
-  ]
+  providers: [AuthService, LoginDataService],
 })
 export class LoginComponent implements OnInit {
- 
   loginForm!: FormGroup;
   constructor(
     private router: Router,
     private authService: AuthService,
     private dataSvc: LoginDataService,
     private fb: FormBuilder,
-    private msg:MessageSvcService
-  ) {
-    
-  }
+    private msg: MessageSvcService
+  ) {}
   ngOnInit(): void {
-    localStorage.setItem('loggedIn', 'false');
     this.createForm();
     this.loadItem();
   }
-  loadItem(){
+  loadItem() {
     this.dataSvc.getItem().subscribe((res) => {
       console.log(res);
     });
   }
-  createForm(){
-   try {
-    this.loginForm = this.fb.group({
-      username: ['', [Validators.required]],
-      password: ['', [Validators.required]],
-      remember: [false]
-    });
-   } catch (error) {
-    this.msg.systemErrorMsg(error);
-   }
+  createForm() {
+    try {
+      this.loginForm = this.fb.group({
+        username: ['', [Validators.required]],
+        password: ['', [Validators.required]],
+        remember: [false],
+      });
+    } catch (error) {
+      this.msg.systemErrorMsg(error);
+    }
   }
 
-  login() {    
+  login() {
     try {
       if (this.loginForm.valid) {
         const loginData = this.loginForm.value;
-      this.dataSvc.login(loginData).subscribe((res) => {
-        if(res.id){
-          this.authService.login();
-          this.msg.successMsg("Login Successfully","Success!");
-          // Navigate to dashboard if login is successful
-          this.router.navigate(['/dashboard']);
-        }else{
-          this.msg.warningMsg("Your not authorized.","Warning!");
-        }
-      });
-    }else{
-      this.msg.errorMsg("Invalid","Error!");
-    }
+        this.dataSvc.login(loginData).subscribe((res) => {
+          if (res.id) {
+            this.authService.login();
+            this.msg.successMsg('Login Successfully', 'Success!');
+
+            this.router.navigate(['dashboard']);
+          } else {
+            this.msg.warningMsg('Your not authorized.', 'Warning!');
+          }
+        });
+      } else {
+        this.msg.errorMsg('Invalid', 'Error!');
+      }
     } catch (error) {
       this.msg.systemErrorMsg(error);
     }

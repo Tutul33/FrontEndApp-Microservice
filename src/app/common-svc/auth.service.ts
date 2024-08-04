@@ -15,8 +15,9 @@ export class AuthService {
   login(): void {
     // Simulate login logic, ideally this would involve authentication via an API
     // For demonstration purposes, we just set a flag and notify subscribers
-    this.loggedIn.next(true);
+    
     localStorage.setItem('loggedIn', 'true');
+    this.loggedIn.next(true);
   }
 
   logout() {

@@ -3,7 +3,7 @@
     <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
       <div class="container">
         <div class="row justify-content-center">
-          <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
+          <div class="col-lg-6 col-md-12 d-flex flex-column align-items-center justify-content-center">
 
             <div class="d-flex justify-content-center py-4">
               <a href="index.html" class="logo d-flex align-items-center w-auto">
@@ -19,46 +19,46 @@
                   <p class="text-center small">Enter your personal details to create account</p>
                 </div>
                 <form [formGroup]="userForm" class="row g-3 needs-validation" (ngSubmit)="save()">
-                  <div class="col-12">
+                  <div class="col-6">
                     <label for="fullName" class="form-label">Your Name</label>
                     <input type="text" name="name" class="form-control" id="fullName"  formControlName="fullName" required>
                     <div *ngIf="userForm.get('fullName')?.invalid && userForm.get('fullName')?.touched" class="invalid-feedback">Please enter your fullname!</div>
                   </div>
-                  <div class="col-12">
+                  <div class="col-6">
                     <label for="email" class="form-label">Your Email</label>
                     <input type="email" name="email" class="form-control" id="email" formControlName="email" required>
                     <div *ngIf="userForm.get('email')?.invalid && userForm.get('email')?.touched" class="invalid-feedback">Please enter a valid Email adddress!</div>
                   </div>
-                  <div class="col-12">
+                  <div class="col-6">
                     <label for="age" class="form-label">Age</label>
                     <input type="age" name="age" class="form-control" id="age" formControlName="age" >
                   </div>
-                  <div class="col-12">
+                  <div class="col-6">
                     <label for="userName" class="form-label">Username</label>
                     <div class="input-group has-validation">
-                      <span class="input-group-text" id="inputGroupPrepend">@</span>
+                      <span class="input-group-text" id="inputGroupPrepend">&#64;</span>
                       <input type="text" name="userName" class="form-control" id="userName" formControlName="userName" required>
                       <div *ngIf="userForm.get('userName')?.invalid && userForm.get('userName')?.touched" class="invalid-feedback">Please choose a username!</div>
                     </div>
                   </div>
-                  <div class="col-12">
+                  <div class="col-6">
                     <label for="birthDate" class="form-label">BirthDay</label>
                     <div class="input-group has-validation">
                       <input type="date" name="birthDate" class="form-control" id="birthDate" formControlName="birthDate">
                     </div>
                   </div>
-                  <div class="col-12">
+                  <div class="col-6">
                     <label for="birthTime" class="form-label">BirthTime</label>
                     <div class="input-group has-validation">
                       <input type="time" name="birthTime" class="form-control" id="birthTime" formControlName="birthTime">
                     </div>
                   </div>
-                  <div class="col-12">
+                  <div class="col-6">
                     <label for="yourPassword" class="form-label">Password</label>
                     <input type="password" name="password" class="form-control" id="yourPassword" formControlName="password" required>
                     <div *ngIf="userForm.get('password')?.invalid && userForm.get('password')?.touched" class="invalid-feedback">Please enter your password!</div>
                   </div>
-                  <div class="col-12">
+                  <div class="col-6">
                     <div class="form-check">
                       <input class="form-check-input" name="terms" type="checkbox" value="" id="acceptTerms" formControlName="termsAndConditions" required>
                       <label class="form-check-label" for="acceptTerms">I agree and accept the <a href="#">terms and conditions</a></label>
