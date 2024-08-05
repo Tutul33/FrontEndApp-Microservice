@@ -5,6 +5,7 @@ import { LoginDataService } from '../service/login-data.service';
 import { UserLogin } from '../model/user-login.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MessageSvcService } from 'src/app/common-svc/message-svc.service';
+import { DataTransferService } from 'src/app/shared/services/data-transfer.service';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,8 @@ export class LoginComponent implements OnInit {
     private authService: AuthService,
     private dataSvc: LoginDataService,
     private fb: FormBuilder,
-    private msg: MessageSvcService
+    private msg: MessageSvcService,
+    private dataTrf:DataTransferService
   ) {}
   ngOnInit(): void {
     this.createForm();
@@ -48,6 +50,7 @@ export class LoginComponent implements OnInit {
         const loginData = this.loginForm.value;
         this.dataSvc.login(loginData).subscribe((res) => {
           if (res.id) {
+            this.dataTrf.broadcast('userInfo',res);
             this.authService.login();
             this.msg.successMsg('Login Successfully', 'Success!');
 
