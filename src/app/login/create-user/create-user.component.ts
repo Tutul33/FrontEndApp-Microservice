@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoginDataService } from '../service/login-data.service';
 import { MessageSvcService } from 'src/app/common-svc/message-svc.service';
 import { LoginModelService } from '../service/login-model.service';
@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   templateUrl: './create-user.component.html',
   styleUrls: ['./create-user.component.css'],
 })
-export class CreateUserComponent {
+export class CreateUserComponent implements OnInit{
   userForm!: FormGroup;
   constructor(
     private modelSvc: LoginModelService,
@@ -36,12 +36,36 @@ export class CreateUserComponent {
         birthTime:[null],
         address:[null],
         country:[null],
+        userContactAddresses:this.fb.array([
+          this.createContactAddress()
+        ])
       });
+      
     } catch (error) {
       this.msg.systemErrorMsg(error);
     }
   }
+  createContactAddress(): FormGroup {
+    return this.fb.group({
+      id: [0],
+      userId: [0],
+      contactNo: ['', Validators.required],
+      address: ['', Validators.required]
+    });
+  }
 
+  get userContactAddresses(): FormArray {
+    return this.userForm.get('userContactAddresses') as FormArray;
+  }
+
+  addContactAddress() {
+    this.userContactAddresses.push(this.createContactAddress());
+  }
+
+  removeContactAddress(index: number) {
+    this.userContactAddresses.removeAt(index);
+  }
+  
   save() {
     try {
       if (this.userForm.valid) {

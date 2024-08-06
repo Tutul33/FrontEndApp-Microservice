@@ -3,7 +3,7 @@
     <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
       <div class="container">
         <div class="row justify-content-center">
-          <div class="col-lg-6 col-md-12 d-flex flex-column align-items-center justify-content-center">
+          <div class="col-lg-8 col-md-12 d-flex flex-column align-items-center justify-content-center">
 
             <div class="d-flex justify-content-center py-4">
               <a href="index.html" class="logo d-flex align-items-center w-auto">
@@ -53,12 +53,32 @@
                       <input type="time" name="birthTime" class="form-control" id="birthTime" formControlName="birthTime">
                     </div>
                   </div>
-                  <div class="col-6">
+                  <div class="col-12">
                     <label for="yourPassword" class="form-label">Password</label>
                     <input type="password" name="password" class="form-control" id="yourPassword" formControlName="password" required>
                     <div *ngIf="userForm.get('password')?.invalid && userForm.get('password')?.touched" class="invalid-feedback">Please enter your password!</div>
                   </div>
                   <div class="col-6">
+                    <h4><b>Address List</b></h4>  
+                  </div>
+                  <div class="col-6">
+                    <div class="d-flex w-100 justify-content-end">
+                      <a class="btn btn-sm btn-warning ms-2" (click)="addContactAddress()">Add Address +</a>
+                    </div>
+                  </div>
+                  <div class="col-12">                    
+                    <table class="w-100" formArrayName="userContactAddresses">
+                      <tr *ngFor="let address of userContactAddresses.controls; let i = index" [formGroupName]="i">
+                        <td><b>{{i+1}}.</b></td>
+                        <td><textarea class="form-control" formControlName="contactNo" placeholder="Contact No"></textarea></td>
+                        <td><textarea class="form-control" formControlName="address" placeholder="Address"></textarea></td>
+                        <td>
+                          <a class="btn btn-sm btn-success" (click)="removeContactAddress(i)">Remove</a>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                  <div class="col-12">
                     <div class="form-check">
                       <input class="form-check-input" name="terms" type="checkbox" value="" id="acceptTerms" formControlName="termsAndConditions" required>
                       <label class="form-check-label" for="acceptTerms">I agree and accept the <a href="#">terms and conditions</a></label>
